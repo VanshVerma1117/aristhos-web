@@ -1,0 +1,541 @@
+html,
+body {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-black: #0a0a0a;
+  --card-bg: #141414;
+  --primary-gold: #c5a059;
+  --text-white: #ffffff;
+  --text-grey: #a0a0a0;
+  --transition: 0.3s ease;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif; /* Clean, modern font */
+}
+body {
+  background-color: var(--bg-black);
+  color: var(--text-white);
+  line-height: 1.6;
+  font-family: Arial, sans-serif;
+}
+header {
+  background-color: var(--text-grey);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+nav {
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+}
+nav .btn {
+  flex-shrink: 0;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo img {
+  height: 2.5rem;
+  width: auto;
+}
+nav ul {
+  display: flex;
+  text-decoration: none;
+  gap: 2.5rem;
+  list-style: none;
+}
+nav ul li {
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+main {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  /* align-items: center; */
+  /* text-align: center; */
+  /* center me la dega pura hero section */
+}
+.textgrey {
+  color: var(--text-grey);
+}
+h1 {
+  font-size: 3.5rem;
+  font-weight: bolder;
+  letter-spacing: -1px;
+}
+h2 {
+  font-size: 2.4rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+p {
+  max-width: 650px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+div.hero-img img {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+.collection-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start; /* Removed the duplicate 'center' down below */
+  gap: 2rem;
+  margin-top: 30px;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+.item-card {
+  flex: 1;                 
+  min-width: 0;            
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.collection-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.item-card img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.item-card h3 {
+  font-size: 1.3rem;
+}
+.item-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 250px;
+}
+.craftsmanship {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 0;
+  height: auto;
+}
+.craft-content {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  height: 500px;
+}
+.craft-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.craftsmanship dl {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.craftsmanship dt {
+  color: var(--primary-gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  /* margin-bottom: 5px; */
+}
+.button-group {
+  display: flex;
+  gap: 20px;
+}
+.signature-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 3rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 40px;
+}
+.maharaja,
+.mirror-frame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.signature-container img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: grayscale(20%);
+  transition: all 0.5s ease;
+}
+.signature-container img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+.signature-container h3 {
+  font-size: 1.5rem;
+  color: var(--primary-gold);
+  margin-top: 10px;
+}
+.feedback-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  margin-top: 40px;
+}
+.testimonial-card {
+  flex: 1;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+  transition: 0.3s ease;
+}
+.testimonial-card:hover {
+  border-color: var(--primary-gold);
+  transform: translateY(-5px);
+}
+.quote {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #efefef;
+  margin-bottom: 20px;
+}
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.name-box {
+  display: flex;
+  flex-direction: column;
+}
+.name {
+  font-weight: 600;
+  color: #fff;
+}
+.role {
+  font-size: 0.85rem;
+  color: var(--text-grey);
+}
+.cta {
+  width: 100vw;
+  background-color: var(--text-grey); /* Light grey/off-white background */
+  padding: 50px 9.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* /* border-radius: 15px; */
+  margin: 80px auto;
+  margin-bottom: 0;
+}
+
+.cta h2 {
+  color: #000;
+  font-size: 2.2rem;
+  max-width: 500px; /* Forces "Vision to Life" to look balanced */
+}
+
+/* Group the buttons so they stay together on the right */
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+/* Reusing your button logic with a few tweaks */
+.cta .btn-black {
+  background-color: #000;
+  color: #fff;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cta .btn-outline {
+  background-color: transparent;
+  color: #000;
+  padding: 15px 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+footer {
+  display: flex;
+  justify-content: space-between; /* Pushes brand group left, links group right */
+  align-items: flex-start; /* Keeps them aligned at the top */
+  padding: 1.5rem 5%; /* Big luxury side padding */
+  background-color: #fff;
+  color: #333;
+  border-top: 1px solid #eee;
+  margin-top: 0;
+}
+
+/* Sibling 1: Brand Group */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Space between logo and social icons */
+}
+
+/* Sibling 2: Links Group */
+.footer-links {
+  display: flex;
+  gap: 60px; /* Space between Company, Products, and Support columns */
+}
+.social-links a {
+  color: var(--text-grey);
+}
+.link-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between links inside the column */
+}
+
+/* Clean up link styles */
+.link-group a {
+  text-decoration: none;
+  color: #666;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.link-group a:hover {
+  color: #000;
+}
+.btn {
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap; /* Prevents text from wrapping inside the button */
+}
+.btn-gold {
+  border: 2px solid var(--primary-gold);
+  border-radius: 5px;
+  padding: 4px;
+  color: var(--bg-black);
+  background-color: var(--primary-gold);
+}
+.btn-black {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #333;
+}
+.btn-grey {
+  background-color: #f0f0f0; /* The "Vision to Life" grey */
+  color: #000;
+  border: 1px solid #ccc;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    main {
+        width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+    }
+  nav {
+    flex-direction: column;
+    flex-wrap: wrap; /* Allows items to drop to a new line if needed */
+    padding: 20px;
+    gap: 10px;
+    height: auto; /* Let the height grow if items wrap */
+  }
+
+  .nav-right {
+    flex-direction: column;
+    display: none; /* Pro Tip: Most luxury sites hide links behind a "Hamburger" menu on mobile */
+  }
+
+  /* If you want to keep the links visible but spaced out: */
+  .nav-right {
+    display: flex;
+    gap: 15px;
+    font-size: 0.8rem;
+  }
+  /* 1. Global Spacing - Give the sides some breathing room */
+  section,
+  footer,
+  .cta {
+    padding: 50px 20px !important;
+  }
+
+  /* 2. Hero Section - Make the heading smaller so it doesn't wrap weirdly */
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .collection-card-container {
+    flex-direction: column; /* This is the "Magic" line */
+    align-items: stretch;   /* Makes cards take up full width */
+    gap: 40px;              /* Adds space between the stacked cards */
+}
+
+.collection-card img {
+    width: 100%;
+    height: 350px;          /* Give them a nice fixed height so they aren't too tall */
+    object-fit: cover;
+}
+  /* 3. Craftmanship - Fix the text & image stack */
+  .craftmanship {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    height: auto;
+    padding: 40px 20px;
+  }
+  .button-group {
+        display: flex;
+        flex-direction: row; /* Keep buttons side-by-side but centered */
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+        margin-bottom: 20px; /* Space between buttons and the image below */
+    }
+    .craft-content {
+        order: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the buttons and text */
+        height: auto;
+    }
+    .craft-image{
+      order: 2;
+      width: 100%;
+      margin-top: 20px;
+    }
+  .craft-image img {
+    height: 400px; 
+  }
+  .OurCollection {
+    display: flex;
+    flex-direction: column;
+  }
+  /* 4. Signature Pieces - Side by side is too tight, stack them */
+  .signature-container {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  /* 5. Client Voices - Show one full card or stack them */
+  .feedback-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* 6. THE BIG FIX: Bring Your Vision To Life */
+  .cta {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .cta h2 {
+    font-size: 1.5rem;
+    max-width: 100%;
+  }
+
+  .cta-buttons {
+    flex-direction: column; /* Stack buttons so they are easy to thumb-tap */
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%; /* Full width buttons are better for mobile UX */
+  }
+
+  /* 7. Footer - Center everything for a clean finish */
+  footer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  .footer-brand{
+    align-items: center;
+    gap: 15px;
+  }
+  .footer-links {
+    grid-template-columns: 1fr; /* Single column links */
+    gap: 30px;
+  }
+
+  .footer-brand {
+    align-items: center;
+  }
+}
