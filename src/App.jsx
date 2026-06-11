@@ -1,13 +1,13 @@
-import Home from './Pages/Home';
-// import Shop from './Pages/Shop';
+// src/App.jsx
+import { Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Shop from "./Pages/Shop";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      {/* <Shop /> */}
-     <Home />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/shop" element={<Shop />} />
+    </Routes>
   );
 }
-
-export default App;
