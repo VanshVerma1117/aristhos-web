@@ -1,6 +1,6 @@
 // src/Components/Features/Home/Footer.jsx
 import { Link } from "react-router-dom"; /* 🚀 Import Link for internal routing */
-import "../../../Styles/index.css";
+import "../../../styles/index.css";
 import Logo from "/LOGO.png";
 
 export default function Footer() {

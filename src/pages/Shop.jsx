@@ -1,7 +1,7 @@
 // src/Pages/Shop.jsx
 import { useState, useEffect } from "react"; /* 🚀 Added useEffect */
 import { useSearchParams } from "react-router-dom"; /* 🚀 Added useSearchParams */
-import "../Styles/shop.css";
+import "../styles/shop.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Features/Home/Footer";
 import { products } from "../data/products";
