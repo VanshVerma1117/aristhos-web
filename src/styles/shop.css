@@ -1,0 +1,414 @@
+html, body {
+  overflow: visible !important; /* Forces the document coordinates to remain wide open */
+  height: auto !important;     /* Prevents height locking */
+}
+
+/* Main Layout Wrapper */
+.shop-page-wrapper {
+  background-color: #111111;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: visible !important;
+}
+
+.shop-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; /* Forces BOTH columns to have the exact same 100% matching height */
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  gap: 3rem;
+  box-sizing: border-box;
+  flex-grow: 1; /* Pushes layout floor down to the footer */
+}
+
+.shop-sidebar-container {
+  width: 220px;
+  flex-shrink: 0;
+  border-right: 1px solid #222222; 
+  padding-right: 2.5rem;           
+  box-sizing: border-box;
+}
+
+.sidebar-brand-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.sidebar-links-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  position: -webkit-sticky; /* Safari backup */
+  position: sticky !important; 
+  top: 140px;               /* Locks text array right below main sticky navbar line */
+  height: max-content;
+}
+
+.sidebar-link-item {
+  font-size: 0.95rem;
+  color: #888888;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.sidebar-link-item:hover,
+.sidebar-link-item.active {
+  color: #c5a880; /* Premium Brand Gold */
+}
+
+.shop-catalog-container {
+  flex-grow: 1; /* Forces catalog panel to claim all remaining horizontal width */
+  min-width: 0; /* Prevents grid layout blowouts inside flex containers */
+}
+
+.catalog-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #222222;
+  margin-bottom: 3rem;
+}
+
+.results-count {
+  font-size: 0.9rem;
+  color: #666666;
+}
+
+.product-grid-display {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Clean 3-column split across expanded space */
+  gap: 3.5rem 2rem;
+  width: 100%;
+}
+
+/* Reusable Product Card Engine */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.product-card-image-wrapper {
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+  border: 1px solid #222222;
+}
+
+.product-card-img {
+  width: 100%;
+  height: 280px; /* Forces images to have a consistent elegant height */
+  object-fit: cover;
+  background-color: #1a1a1a; /* Backup display while image downloads */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card-image-wrapper:hover .product-card-img {
+  transform: scale(1.03); /* Soft upscale refinement */
+}
+
+.product-card-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.product-card-desc {
+  font-size: 0.9rem;
+  color: #888888;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+.view-details-link {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #c5a880; /* Elegant brand gold */
+  cursor: pointer; 
+  position: relative;
+  transition: color 0.3s ease;
+  width: max-content;
+}
+
+/* Sleek animated underline effect */
+.view-details-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0); /* Hidden by default */
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #c5a880;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out; /* Smooth slide out animation */
+}
+
+.view-details-link:hover {
+  color: #ffffff; /* Brightens text to pure white when hovered */
+}
+
+.view-details-link:hover::after {
+  transform: scaleX(1); /* Reveals underline smoothly from left to right on hover */
+  transform-origin: bottom left;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Pure deep blackout drop */
+  backdrop-filter: blur(8px); /* Elegant blur filter */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Higher than navbar layers */
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background-color: #141414;
+  border: 1px solid #222222;
+  width: 90%;
+  max-width: 900px;
+  padding: 2.5rem;
+  position: relative;
+  box-sizing: border-box;
+  animation: slideUp 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  max-height: 90vh;
+  overflow-y: auto; /* Handles small screen heights safely inside popup layouts */
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #666666;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  color: #ffffff;
+}
+
+/* Modern Split Screen Modal Body Grid */
+.modal-body-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.modal-image-panel img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border: 1px solid #222222;
+}
+
+.modal-details-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-label-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #666666;
+  margin-bottom: 0.5rem;
+}
+
+.modal-product-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.modal-product-price {
+  font-size: 1.4rem;
+  color: #c5a880; /* Elegant brand gold */
+  font-weight: 400;
+  margin: 0;
+}
+
+.modal-divider {
+  border: 0;
+  border-top: 1px solid #222222;
+  margin: 1.5rem 0;
+}
+
+.modal-product-desc {
+  font-size: 0.95rem;
+  color: #aaaaaa;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.modal-meta-row {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  color: #dddddd;
+}
+
+.modal-meta-row strong {
+  color: #888888;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+/* Premium WhatsApp Inquiry Button */
+.modal-action-btn {
+  display: block;
+  text-align: center;
+  background-color: #c5a880;
+  color: #111111;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.modal-action-btn:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 💻 LAPTOPS & TABLETS (Mid-range Screens) */
+@media (max-width: 1024px) {
+  .shop-layout {
+    padding: 3rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .shop-sidebar-container {
+    width: 180px;
+    padding-right: 1.5rem;
+  }
+
+  .product-grid-display {
+    grid-template-columns: repeat(2, 1fr); /* Collapses down smoothly into a 2-column grid setup */
+    gap: 2.5rem 1.5rem;
+  }
+
+  .product-card-img {
+    height: 240px;
+  }
+}
+
+/* 📱 MOBILE PHONES & SMALL VIEWPORTS */
+@media (max-width: 768px) {
+  .shop-layout {
+    flex-direction: column; /* 🚀 REFLOWS CAPABILITY: Drops filters above layout block */
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+
+  /* Transform vertical sidebar into a premium horizontal menu bar */
+  .shop-sidebar-container {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #222222;
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+  }
+
+  .sidebar-brand-title {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1.5px;
+    text-align: center;
+  }
+
+  .sidebar-links-list {
+    flex-direction: row;        /* Converts list stream into inline rows */
+    position: static !important; /* Disables side freeze behavior on mobile viewports */
+    overflow-x: auto;           /* 🚀 MAGIC LINE: Unlocks touch scroll navigation */
+    padding-bottom: 8px;
+    gap: 1.8rem;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; /* Butter-smooth momentum tracking for iOS devices */
+  }
+
+  /* Clear default scroll bars across styling pipelines to maintain presentation focus */
+  .sidebar-links-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidebar-links-list {
+    scrollbar-width: none;
+  }
+
+  /* Catalog Structure Cleanup */
+  .catalog-top-bar {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .product-grid-display {
+    grid-template-columns: 1fr; /* 🚀 PURE MOBILE: Stacks products cleanly into 1 vertical feed */
+    gap: 3rem 0;
+  }
+
+  .product-card-img {
+    height: 320px; /* Expands spatial height bounds to preserve details */
+  }
+
+  .product-card-title {
+    font-size: 1.2rem;
+  }
+
+  /* Quick View Modal Optimization */
+  .modal-content {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .modal-body-layout {
+    grid-template-columns: 1fr; /* Stacks image and descriptors into single lane vertical path */
+    gap: 1.5rem;
+  }
+
+  .modal-image-panel img {
+    height: 250px;
+  }
+
+  .modal-product-title {
+    font-size: 1.5rem;
+  }
+}
