@@ -1,0 +1,108 @@
+.header {
+  width: 100%;
+  z-index: 1000;
+  transition: all var(--transition);
+}
+
+/* --- State: Standard Opaque Navbar --- */
+.standardNav {
+  position: sticky;
+  top: 0;
+  background-color: var(--text-grey);
+}
+
+.standardNav .logoText,
+.standardNav .navLink,
+.standardNav .navLink:link,
+.standardNav .navLink:visited {
+  color: #000000 !important;
+}
+
+.standardNav .navLink.active {
+  color: var(--primary-gold) !important;
+}
+
+/* --- State: Transparent Overlay Navbar --- */
+.transparentNav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.transparentNav .logoText,
+.transparentNav .navLink,
+.transparentNav .navLink:link,
+.transparentNav .navLink:visited {
+  color: var(--text-white) !important;
+}
+
+.transparentNav .navLink.active {
+  color: var(--primary-gold) !important;
+}
+
+/* --- Core Structure --- */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logoText {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.logoImg {
+  height: 2.5rem;
+  width: auto;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.navList {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.navLink {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color var(--transition);
+}
+.standardNav .navLink:hover,
+.transparentNav .navLink:hover {
+  color: var(--primary-gold) !important;
+}
+
+@media (max-width: 768px) {
+  .navList {
+    display: none;
+  }
+  .nav {
+    padding: 1rem 5%;
+  }
+  .logoText {
+    font-size: 1rem;
+  }
+}

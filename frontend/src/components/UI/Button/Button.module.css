@@ -1,0 +1,55 @@
+.btn {
+  padding: 14px 32px;
+  font-size: .95rem;
+  font-weight: 600;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btnGold {
+  color: var(--bg-black);
+  background-color: var(--primary-gold);
+}
+
+.btnGold:hover {
+  background-color: #b08e4b;
+}
+
+.btnBlack {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #222222;
+}
+
+.btnBlack:hover {
+  background-color: #1a1a1a;
+}
+
+.btnLight {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #dddddd;
+}
+
+.btnLight:hover {
+  background-color: #f5f5f5;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 📱 MOBILE VIEWPORT BREAKPOINT */
+@media (max-width: 768px) {
+  .btn { width: 100% };
+}

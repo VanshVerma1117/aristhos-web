@@ -1,0 +1,42 @@
+.ctaContainer {
+  width: 100vw;
+  background-color: var(--text-grey);
+  padding: 60px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* 🚀 Full viewport bleed edge calculation safely isolated */
+  margin: 80px calc(-50vw + 50%) 0 calc(-50vw + 50%); 
+}
+
+.heading {
+  color: #000000;
+  font-size: 2.2rem;
+  max-width: 500px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 20px;
+}
+
+/* 📱 MOBILE VIEWPORT BREAKPOINT */
+@media (max-width: 768px) {
+  .ctaContainer {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    padding: 40px 20px;
+  }
+  
+  .heading {
+    font-size: 1.6rem;
+    max-width: 100%;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,74 @@
+.splitLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.textContent {
+  padding-right: 2rem;
+}
+
+.paragraph {
+  color: var(--text-grey);
+  margin-bottom: 1.5rem;
+}
+
+.formCard {
+  background-color: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 4px;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  font-size: 0.85rem;
+  color: var(--text-grey);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.input {
+  background-color: var(--bg-black);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
+  padding: 0.875rem;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: border-color var(--transition);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-gold);
+}
+
+.successMessage {
+  color: #4ade80; /* Status colors typically remain hardcoded as they fall outside brand themes */
+  background-color: rgba(74, 222, 128, 0.1);
+  padding: 1rem;
+  border: 1px solid #4ade80;
+  border-radius: 4px;
+}
+
+.errorMessage {
+  color: #fca5a5;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .splitLayout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .textContent {
+    padding-right: 0;
+  }
+}

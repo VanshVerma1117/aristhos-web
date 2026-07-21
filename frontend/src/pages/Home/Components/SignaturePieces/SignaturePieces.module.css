@@ -1,0 +1,146 @@
+.section {
+  background-color: var(--bg-black,#0a0a0a);
+  padding: 5rem 2rem;
+  color: #ffffff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.subtitle {
+  text-align: center;
+  color: #888888;
+  font-size: 0.95rem;
+  margin-bottom: 3.5rem;
+}
+
+.loading {
+  text-align: center;
+  color: #666666;
+  font-size: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.card {
+  background-color: #111111;
+  border: 1px solid #222222;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* Distinct elegant ratio for landing page cards */
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+.noImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #444444;
+}
+
+.content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.category {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #666666;
+  margin-bottom: 0.5rem;
+}
+
+.itemTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.price {
+  font-size: 1.1rem;
+  color: var(--primary-gold, #c5a059);
+  margin: 0 0 1.5rem 0;
+}
+
+.viewBtn {
+  margin-top: auto;
+  padding: 0.75rem;
+  background-color: transparent;
+  border: 1px solid #c5a059;
+  color: var(--primary-gold, #c5a059);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewBtn:hover {
+  background-color: var(--primary-gold, #c5a059);
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1.25rem; /* Compresses wasted vertical whitespace on mobile */
+  }
+
+  .title {
+    font-size: 1.5rem; /* Prevents text wrapping breaks */
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .grid {
+    /* Lowers the floor from 320px to 280px to prevent horizontal overflow on legacy 320px viewports */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .imageContainer {
+    aspect-ratio: 1 / 1; /* Swaps to a square ratio to maximize image size on narrow vertical screens */
+  }
+}

@@ -1,0 +1,59 @@
+:root {
+  --bg-black: #0a0a0a;
+  --card-bg: #141414;
+  --primary-gold: #c5a059;
+  --text-white: #ffffff;
+  --text-grey: #a0a0a0;
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+  background-color: var(--bg-black);
+  color: var(--text-white);
+  line-height: 1.6;
+}
+main {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px; /* Uniform section separation spacing */
+}
+
+/* Base Typographic Hierarchy */
+h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; }
+h2 { font-size: 2.4rem; font-weight: 700; letter-spacing: -1px; }
+p { font-size: 1.1rem; color: var(--text-grey); }
+
+/* Global Structural Box Utilities */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 10px;
+}
+@media (max-width: 1024px) {
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 2rem; }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 40px 15px;
+    gap: 60px;
+  }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+}

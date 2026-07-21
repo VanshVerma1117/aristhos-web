@@ -1,0 +1,90 @@
+.sidebarContainer {
+  width: 220px;
+  flex-shrink: 0;
+  border-right: 1px solid #222222; 
+  padding-right: 2.5rem;           
+  box-sizing: border-box;
+  position: sticky;
+  top: 140px;
+  align-self: flex-start;
+  height: max-content;
+}
+
+.brandTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.linksList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.linkItem {
+  font-size: 0.95rem;
+  color: #888888;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+
+  /* added extra later on */
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.linkItem:hover,
+.active {
+  color: var(--primary-gold); 
+}
+
+/* 💻 LAPTOPS & TABLETS */
+@media (max-width: 1024px) {
+  .sidebarContainer {
+    width: 180px;
+    padding-right: 1.5rem;
+  }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .sidebarContainer {
+    position: static !important;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #222222;
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+  }
+
+  .brandTitle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1.5px;
+    text-align: center;
+  }
+
+  .linksList {
+    flex-direction: row;
+    position: static !important; 
+    overflow-x: auto;           
+    padding-bottom: 8px;
+    gap: 1.8rem;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; 
+    scrollbar-width: none;
+  }
+
+  .linksList::-webkit-scrollbar {
+    display: none;
+  }
+}

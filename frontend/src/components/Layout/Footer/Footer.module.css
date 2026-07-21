@@ -1,0 +1,104 @@
+.footerContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 4rem 9%;
+  background-color: #ffffff;
+  color: #333333;
+  border-top: 1px solid #eeeeee;
+  /* 🚀 Full viewport bleed edge calculation safely isolated */
+  margin-left: calc(-50vw + 50%); 
+}
+
+.brandSection {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.logoLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoImg {
+  height: 2.5rem;
+  width: auto;
+}
+
+/* 🚀 Targetable typography block matching the Navbar standard */
+.logoText {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #000000;
+}
+.tagline {
+  font-size: 0.85rem;
+  color: #888888;
+  max-width: 280px;
+  line-height: 1.5;
+}
+.taglineLink { color: var(--primary-gold); text-decoration: underline; }
+
+.linksSection {
+  display: flex;
+  gap: 80px;
+}
+
+.linkGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+}
+
+
+.linkGroup a {
+  text-decoration: none;
+  color: #666666;
+  font-size: 1rem;
+  transition: color var(--transition);
+}
+
+.linkGroup a:hover {
+  color: #000000;
+}
+
+/* 💻 TABLET VIEWPORT BREAKPOINT */
+@media (max-width: 1024px) {
+  .linksSection { gap: 40px; }
+}
+
+/* 📱 MOBILE VIEWPORT BREAKPOINT */
+@media (max-width: 768px) {
+  .footerContainer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+  
+  .brandSection {
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .linksSection {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .linkGroup {
+    gap: 12px;
+  }
+}

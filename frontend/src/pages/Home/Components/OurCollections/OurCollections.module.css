@@ -1,0 +1,31 @@
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardGrid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 30px;
+  width: 100%;
+}
+
+/* 💻 TABLET VIEWPORT BREAKPOINT */
+@media (max-width: 1024px) {
+  .cardGrid {
+    gap: 20px;
+  }
+}
+
+/* 📱 MOBILE VIEWPORT BREAKPOINT */
+@media (max-width: 768px) {
+  .cardGrid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 35px;
+  }
+}

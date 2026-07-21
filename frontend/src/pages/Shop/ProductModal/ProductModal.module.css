@@ -1,0 +1,138 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); 
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; 
+  animation: fadeIn 0.3s ease;
+}
+
+.content {
+  background-color: #141414;
+  border: 1px solid #222222;
+  width: 90%;
+  max-width: 900px;
+  padding: 2.5rem;
+  position: relative;
+  box-sizing: border-box;
+  animation: slideUp 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  max-height: 90vh;
+  overflow-y: auto; 
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #666666;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.closeBtn:hover {
+  color: #ffffff;
+}
+
+.bodyLayout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.imagePanel img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border: 1px solid #222222;
+}
+
+.detailsPanel {
+  display: flex;
+  flex-direction: column;
+}
+
+.labelTag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #666666;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.price {
+  font-size: 1.4rem;
+  color: var(--primary-gold); 
+  font-weight: 400;
+  margin: 0;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #222222;
+  margin: 1.5rem 0;
+}
+
+.desc {
+  font-size: 0.95rem;
+  color: #aaaaaa;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.metaRow {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  color: #dddddd;
+}
+
+.metaRow strong {
+  color: #888888;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.actionBtn {
+  display: block;
+  text-align: center;
+  background-color: var(--primary-gold);
+  color: #111111;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.actionBtn:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 768px) {
+  .content { padding: 1.5rem; width: 95%; }
+  .bodyLayout { grid-template-columns: 1fr; gap: 1.5rem; }
+  .imagePanel img { height: 250px; }
+  .title { font-size: 1.5rem; }
+}
