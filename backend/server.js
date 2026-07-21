@@ -16,7 +16,7 @@ const app = express();
 app.use(express.json()); // Parses raw JSON bodies
 app.use(cookieParser()); // Parses incoming cookies
 app.use(cors({
-  origin: 'process.env.https://aristhos-web.vercel.app/', // The exact URL of your Vite React app
+  origin: process.env.FRONTEND_URL, // The exact URL of your Vite React app
   credentials: true, // Crucial: Instructs the browser to allow the HttpOnly cookie to cross the port boundary
 }));
 
