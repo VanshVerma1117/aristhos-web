@@ -26,7 +26,7 @@ const productSchema = new mongoose.Schema({
       'Bedroom', 
       'Dining Room', 
       'Bespoke / Custom'
-    ], // Enforces strict categorization for your frontend filters
+    ], // Enforces strict categorization for frontend filters
   },
   imageUrl: {
     type: String,

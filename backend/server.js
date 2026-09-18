@@ -1,44 +1,43 @@
-// 1. Dependency Imports (Top of file)
-const cors = require('cors');
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
+
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/productRoutes');
-const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const inquiryRoutes = require('./routes/inquiryRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
-// 2. Application Initialization (CRITICAL: Must occur before any app.use)
 const app = express();
 
-// 3. Global Middleware Pipeline (Must parse incoming requests before routes)
-app.use(express.json()); // Parses raw JSON bodies
-app.use(cookieParser()); // Parses incoming cookies
+// Required for Render's load balancer to read real client IPs
+app.set('trust proxy', 1);
+
+app.use(helmet());
+app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // The exact URL of your Vite React app
-  credentials: true, // Crucial: Instructs the browser to allow the HttpOnly cookie to cross the port boundary
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
 }));
 
-// 4. Route Mounting (Passes the parsed request to your controllers)
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
-app.use('/api/upload', require('./routes/uploadRoutes')); 
+app.use('/api/upload', uploadRoutes); 
 app.use('/api/inquiries', inquiryRoutes);
 
-// 5. Error Boundary Pipeline (CRITICAL: Must occur AFTER routes but BEFORE app.listen)
 app.use(notFound);
 app.use(errorHandler);
 
-
-// 6. Database Connection and Server Boot (Bottom of file)
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('Database connected...');
-    app.listen(process.env.PORT || 5001, () => {
-      console.log(`Server running on port ${process.env.PORT || 5001}`);
-    });
+    console.log('Database connected');
+    const PORT = process.env.PORT || 5001;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })
   .catch((error) => {
-    console.error(`Database connection failed: ${error}`);
+    console.error('Database connection failed:', error);
   });

@@ -9,7 +9,7 @@ const inquirySchema = new mongoose.Schema({
     enum: ['pending_whatsapp', 'contacted', 'resolved', 'new_custom_project'], 
     default: 'pending_whatsapp' 
   },
-  // Added fields to support the About Page form
+  //fields to support the About Page form
   customerName: { type: String, required: false },
   customerEmail: { type: String, required: false },
   message: { type: String, required: false }
