@@ -4,7 +4,11 @@ A full stack product catalog and lead-management system with JWT-authenticated a
 
 Public visitors browse a product catalog and submit inquiries via WhatsApp or a custom project form. A single admin account manages the product catalog and customer inquiries through a protected dashboard.
 
-**Live demo:** _[add Vercel URL here once deployed]_
+**Live demo:** [Visit Aristhos Woodcraft](https://aristhos-web.vercel.app/)
+
+![Public Shop View](/frontend/public/Shop-view.png)
+![Admin Inventory Dashboard](</frontend/public/Admin Inventory Dashboard.png>)
+![Customer Inquiry Dashboard](</frontend/public/Customer Inquiries Dashboard.png>)
 
 ---
 
@@ -16,11 +20,12 @@ Public visitors browse a product catalog and submit inquiries via WhatsApp or a 
 - CSS Modules (component-scoped styling)
 - Axios
 
-**Backend**
+**Backend & Security**
 - Node.js + Express
 - MongoDB + Mongoose
-- JWT authentication (httpOnly cookies)
-- bcrypt password hashing
+- JWT authentication (httpOnly cookies) & bcrypt password hashing
+- **Security Hardening:** Express Rate Limit (brute-force protection), Helmet (HTTP header security), and custom stack-trace concealed error handling.
+- **Media Storage:** Cloudinary CDN + Multer
 
 **Deployment**
 - Frontend: Vercel
@@ -32,16 +37,16 @@ Public visitors browse a product catalog and submit inquiries via WhatsApp or a 
 ## Features
 
 **Public**
-- Browse products by category (Living Room, Bedroom, Dining Room, Bespoke/Custom)
-- Product detail modal with WhatsApp inquiry (auto-logged to the database with a tracking reference)
-- Custom project inquiry form (email-based, no phone number required)
-- Responsive across desktop, tablet, and mobile
+- Browse products by category (Living Room, Bedroom, Dining Room, Bespoke/Custom).
+- Product detail modal with WhatsApp inquiry (auto-logged to the database with a tracking reference).
+- Custom project inquiry form (email-based, no phone number required).
+- Responsive across desktop, tablet, and mobile.
 
 **Admin (protected)**
-- JWT-based login with httpOnly cookies
-- Product CRUD (create, edit, delete) via a protected inventory dashboard
-- Customer inquiry dashboard — view all inquiries, update status (Pending WhatsApp / Contacted / Resolved)
-- Route-level auth guard — unauthenticated visits to any `/admin/*` route redirect to login
+- JWT-based login with secure httpOnly cookies.
+- Product CRUD (create, edit, delete image uploads) via a protected inventory dashboard.
+- Customer inquiry dashboard — view all inquiries, update status workflow (Pending WhatsApp / Contacted / Resolved).
+- Route-level auth guard — unauthenticated visits to any `/admin/*` route redirect to login.
 
 ---
 
@@ -66,10 +71,10 @@ aristhos-web/
 │
 └── backend/
     ├── controllers/          # auth, product, inquiry logic
-    ├── middleware/           # auth guard, error handler, upload
+    ├── middleware/           # auth guard, error handler, rate limiter, upload
     ├── models/                # User, Product, Inquiry (Mongoose schemas)
     ├── routes/
-    ├── seeder.js              # sample data seeding script
+    ├── seeder.js            
     └── server.js
 ```
 
@@ -119,6 +124,7 @@ VITE_API_BASE_URL=http://localhost:5001/api
 | GET | `/api/auth/me` | Protected — session check |
 | GET | `/api/products` | Public |
 | POST / PUT / DELETE | `/api/products` | Protected (admin) |
+| POST | `/api/upload` | Protected (admin)-Cloudinary CDN |
 | POST | `/api/inquiries` | Public |
 | GET | `/api/inquiries` | Protected (admin) |
 | PUT | `/api/inquiries/:id` | Protected (admin) |
