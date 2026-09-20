@@ -7,8 +7,8 @@ Public visitors browse a product catalog and submit inquiries via WhatsApp or a 
 **Live demo:** [Visit Aristhos Woodcraft](https://aristhos-web.vercel.app/)
 
 ![Public Shop View](/frontend/public/Shop-view.png)
-![Admin Inventory Dashboard](</frontend/public/Admin Inventory Dashboard.png>)
-![Customer Inquiry Dashboard](</frontend/public/Customer Inquiries Dashboard.png>)
+![Admin Inventory Dashboard](</frontend/public/Admin-Inventory-Dashboard.png>)
+![Customer Inquiry Dashboard](</frontend/public/Customer-Inquiries-Dashboard.png>)
 
 ---
 
