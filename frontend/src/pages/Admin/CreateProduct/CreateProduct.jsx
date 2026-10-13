@@ -2,25 +2,21 @@ import { useState, useEffect } from 'react';
 import apiClient from '../../../utils/axiosInstance';
 import styles from './CreateProduct.module.css';
 
+const INITIAL_FORM_STATE = {
+  name: '',
+  price: '',
+  description: '',
+  category: 'Living Room',
+  inStock: true
+};
+
 export default function CreateProduct() {
-  // Form State
-  const [formData, setFormData] = useState({
-    name: '',
-    price: '',
-    description: '',
-    category: 'Living Room',
-    inStock: true
-  });
-  
-  // Media State
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [imageFile, setImageFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
-  
-  // Transaction State
   const [status, setStatus] = useState('idle'); 
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Production Guard: Prevent memory leaks from dangling blob URLs
   useEffect(() => {
     return () => {
       if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -46,7 +42,6 @@ export default function CreateProduct() {
 
     setImageFile(file);
     
-    // Revoke old URL before creating a new one to free memory
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     setPreviewUrl(URL.createObjectURL(file)); 
     setErrorMessage('');
@@ -60,37 +55,30 @@ export default function CreateProduct() {
     }
 
     setErrorMessage('');
-    let uploadedImageUrl = '';
-
+    
     try {
-      // PHASE 1: Stream to Cloudinary using your configured apiClient
       setStatus('uploading');
       const uploadData = new FormData();
       uploadData.append('image', imageFile);
 
-      // apiClient automatically handles the base URL and withCredentials
       const uploadResponse = await apiClient.post('/upload', uploadData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
-      uploadedImageUrl = uploadResponse.data.imageUrl;
-
-      // PHASE 2: Save to MongoDB
       setStatus('saving');
       const productPayload = {
         ...formData,
         price: Number(formData.price),
-        imageUrl: uploadedImageUrl
+        imageUrl: uploadResponse.data.imageUrl
       };
 
       await apiClient.post('/products', productPayload);
 
       setStatus('success');
       
-      // Reset form
       setTimeout(() => {
         setStatus('idle');
-        setFormData({ name: '', price: '', description: '', category: 'Living Room', inStock: true });
+        setFormData(INITIAL_FORM_STATE);
         setImageFile(null);
         setPreviewUrl('');
       }, 3000);
@@ -102,6 +90,12 @@ export default function CreateProduct() {
     }
   };
 
+  const getButtonText = () => {
+    if (status === 'uploading') return '1/2: Uploading Image to CDN...';
+    if (status === 'saving') return '2/2: Writing to Database...';
+    return 'Create Product';
+  };
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Add New Inventory</h2>
@@ -111,7 +105,6 @@ export default function CreateProduct() {
 
       <form onSubmit={handleSubmit} className={styles.form}>
         
-        {/* Phase 1 Input: Media */}
         <div className={styles.mediaUploadContainer}>
           <label className={styles.label}>Product Image (Max 5MB)</label>
           <input 
@@ -126,7 +119,6 @@ export default function CreateProduct() {
           )}
         </div>
 
-        {/* Phase 2 Inputs: Metadata */}
         <div className={styles.inputGroup}>
           <label className={styles.label}>Product Name</label>
           <input type="text" name="name" required value={formData.name} onChange={handleInputChange} className={styles.input} />
@@ -162,9 +154,7 @@ export default function CreateProduct() {
           disabled={status === 'uploading' || status === 'saving'}
           className={styles.submitBtn}
         >
-          {status === 'idle' || status === 'error' ? 'Create Product' : 
-           status === 'uploading' ? '1/2: Uploading Image to CDN...' : 
-           '2/2: Writing to Database...'}
+          {getButtonText()}
         </button>
       </form>
     </div>

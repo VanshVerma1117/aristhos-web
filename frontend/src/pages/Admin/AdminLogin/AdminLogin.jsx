@@ -10,7 +10,8 @@ export default function AdminLogin() {
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
-    setCredentials(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setCredentials(prev => ({ ...prev, [name]: value }));
   };
 
   const handleLogin = async (e) => {
@@ -19,11 +20,10 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      // apiClient automatically injects the correct base URL and withCredentials configuration
       const response = await apiClient.post('/auth/login', credentials);
 
       if (response.status === 200) {
-        navigate('/admin/create');
+        navigate('/admin/inventory');
       }
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message || 'Authentication failed.';

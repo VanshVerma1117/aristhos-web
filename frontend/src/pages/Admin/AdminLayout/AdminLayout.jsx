@@ -3,17 +3,21 @@ import { Outlet, Link, useLocation, useNavigate, Navigate } from 'react-router-d
 import apiClient from '../../../utils/axiosInstance';
 import styles from './AdminLayout.module.css';
 
+const NAV_LINKS = [
+  { name: 'Inventory', path: '/admin/inventory', icon: 'fa-box' },
+  { name: 'Add Product', path: '/admin/create', icon: 'fa-plus' },
+  { name: 'Inquiries', path: '/admin/inquiries', icon: 'fa-envelope' }
+];
+
 export default function AdminLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const [authStatus, setAuthStatus] = useState('checking');
 
-    useEffect(() => {
+  useEffect(() => {
     const verifyAuth = async () => {
       try {
-        // Any protected GET route works as a lightweight "am I logged in" check.
-        // Cleanest is a dedicated /api/auth/me route if you have or add one.
-        await apiClient.get('/auth/me'); // real, protected check
+        await apiClient.get('/auth/me');
         setAuthStatus('authenticated');
       } catch (error) {
         setAuthStatus('unauthenticated');
@@ -24,13 +28,11 @@ export default function AdminLayout() {
 
   const handleLogout = async () => {
     try {
-      // Securely routes through apiClient which handles the base URL and credentials automatically
       await apiClient.post('/auth/logout', {});
     } catch (error) {
-      console.error('Logout network failure', error);
+      console.error('Logout network failure:', error);
     } finally {
       navigate('/admin/login');
-      // Hard reload clears any lingering React memory/context state
       window.location.reload(); 
     }
   };
@@ -43,16 +45,8 @@ export default function AdminLayout() {
     return <Navigate to="/admin/login" replace />;
   }
 
-  const navLinks = [
-    { name: 'Inventory', path: '/admin/inventory', icon: 'fa-box' },
-    { name: 'Add Product', path: '/admin/create', icon: 'fa-plus' },
-    { name: 'Inquiries', path: '/admin/inquiries', icon: 'fa-envelope' }
-  ];
-
   return (
     <div className={styles.layoutContainer}>
-      
-      {/* Sidebar Navigation */}
       <aside className={styles.sidebar}>
         <div className={styles.brandHeader}>
           <h2 className={styles.brandTitle}>Aristhos</h2>
@@ -60,7 +54,7 @@ export default function AdminLayout() {
         </div>
 
         <nav className={styles.navMenu}>
-          {navLinks.map((link) => {
+          {NAV_LINKS.map((link) => {
             const isActive = location.pathname.includes(link.path);
             return (
               <Link
@@ -83,13 +77,11 @@ export default function AdminLayout() {
         </div>
       </aside>
 
-      {/* Main Content Area */}
       <main className={styles.mainContent}>
         <div className={styles.contentWrapper}>
           <Outlet />
         </div>
       </main>
-      
     </div>
   );
 }
