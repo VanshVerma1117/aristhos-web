@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { useState } from "react";
 import Button from "../../../../components/UI/Button/Button";
 import styles from "./Craftsmanship.module.css";
 
@@ -14,7 +13,7 @@ const CRAFT_DATA = [
     id: "artisans",
     title: "Master Artisans",
     description: "Hand-chiseled by hereditary master carvers using ancestral tools, preserving traditional intricate pattern work unique to the culture.",
-    image: "/shop-assets/Maharaja throne.png"
+    image: "/shop-assets/maharaja-throne.png"
   },
   {
     id: "delivery",
@@ -39,7 +38,6 @@ export default function Craftsmanship() {
                 key={item.id} 
                 className={`${styles.qualityItem} ${isActive ? styles.activeItem : ""}`}
                 onClick={() => setActiveIndex(index)}
-                style={{ cursor: "pointer" }}
               >
                 <dt className={`${styles.qualityTitle} ${isActive ? styles.goldTitle : ""}`}>
                   {item.title}

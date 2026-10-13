@@ -26,6 +26,7 @@
   padding: 15px;
   border-left: 2px solid transparent;
   transition: all var(--transition);
+  cursor: pointer;
 }
 
 .activeItem {
@@ -33,7 +34,6 @@
   background: linear-gradient(to right, rgba(197, 160, 89, 0.04), transparent);
 }
 
-/* Replaces the need for the global .textgrey class */
 .qualityTitle {
   font-size: 1.15rem;
   font-weight: 700;
@@ -48,7 +48,6 @@
   line-height: 1.6;
 }
 
-/* Force override for active state */
 .goldTitle {
   color: var(--primary-gold) !important;
 }
@@ -87,13 +86,12 @@
   }
 }
 
-/* 💻 TABLET VIEWPORT BREAKPOINT */
+/* Breakpoints */
 @media (max-width: 1024px) {
   .container { gap: 30px; }
   .imageContainer { height: 500px; }
 }
 
-/* 📱 MOBILE VIEWPORT BREAKPOINT */
 @media (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;

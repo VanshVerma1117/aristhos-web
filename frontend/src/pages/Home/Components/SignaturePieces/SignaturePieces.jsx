@@ -12,7 +12,7 @@ export default function SignaturePieces({ products, loading }) {
     );
   }
 
-  if (!products || products.length === 0) return null; // Gracefully hide section if no products exist
+  if (!products || products.length === 0) return null; 
 
   return (
     <section className={styles.section}>
@@ -37,7 +37,6 @@ export default function SignaturePieces({ products, loading }) {
                 <h3 className={styles.itemTitle}>{product.name}</h3>
                 <p className={styles.price}>₹{product.price.toLocaleString('en-IN')}</p>
                 
-                {/* Direct deep-link interaction to open the product modal on the shop page */}
                 <button 
                   onClick={() => navigate(`/shop?productId=${product._id}`)}
                   className={styles.viewBtn}

@@ -1,12 +1,12 @@
 .heroFullscreen {
   width: 100vw;
   height: 85vh;
-  background-image: url("/shop-assets/SHOP hero-img.png");
+  background-image: url("/shop-assets/shop-hero-img.png");
   background-size: cover;
   background-position: center;
   position: relative;
   margin-left: calc(-50vw + 50%);
-  margin-top: -88px; /* Perfectly offsets header height baseline */
+  margin-top: -88px; /* Offsets header height */
 }
 
 .tintOverlay {
@@ -46,13 +46,13 @@
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* 💻 TABLET VIEWPORT BREAKPOINT */
+/* Tablet Breakpoint */
 @media (max-width: 1024px) {
   .heroFullscreen { height: 65vh; }
   .textContainer h1 { font-size: 2.8rem; }
 }
 
-/* 📱 MOBILE VIEWPORT BREAKPOINT */
+/* Mobile Breakpoint */
 @media (max-width: 768px) {
   .heroFullscreen {
     height: auto;              
@@ -64,7 +64,6 @@
   }
   
   .tintOverlay {
-    /* Deeper, cleaner gradient mask spanning from absolute pixel zero */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.25) 100%);
   }
 

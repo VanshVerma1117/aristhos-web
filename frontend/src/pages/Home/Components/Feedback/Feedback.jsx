@@ -1,28 +1,25 @@
 import styles from "./Feedback.module.css";
-import danielimg from "/home_assets/Daniel.png";
-import vivanimg from "/home_assets/Vivan.png";
-import tarunimg from "/home_assets/Tarun.png";
 
 const REVIEWS = [
   {
     id: 1,
     name: "Daniel Evans",
     role: "Architect, London",
-    img: danielimg,
+    img: "/home_assets/Daniel.png",
     quote: "The structural joinery and attention to detail on my dining table is incredible. A true masterpiece of heritage art!"
   },
   {
     id: 2,
     name: "Vivan Malhotra",
     role: "Estate Owner, New Delhi",
-    img: vivanimg,
+    img: "/home_assets/Vivan.png",
     quote: "Unmatched teak craftsmanship. The grain selection is immaculate, and the hand-polished semi-gloss finish is incredibly high-end."
   },
   {
     id: 3,
     name: "Tarun Sharma",
     role: "Interior Designer, Mumbai",
-    img: tarunimg,
+    img: "/home_assets/Tarun.png",
     quote: "The Maharaja Sofa is spectacular. The frame offers absolute comfort, and you can instantly smell the rich, organic aroma of premium seasoned wood."
   }
 ];
