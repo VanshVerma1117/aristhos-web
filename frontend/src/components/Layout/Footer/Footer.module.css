@@ -7,7 +7,6 @@
   background-color: #ffffff;
   color: #333333;
   border-top: 1px solid #eeeeee;
-  /* 🚀 Full viewport bleed edge calculation safely isolated */
   margin-left: calc(-50vw + 50%); 
 }
 
@@ -33,7 +32,6 @@
   width: auto;
 }
 
-/* 🚀 Targetable typography block matching the Navbar standard */
 .logoText {
   font-size: 1.1rem;
   font-weight: 700;
@@ -72,12 +70,12 @@
   color: #000000;
 }
 
-/* 💻 TABLET VIEWPORT BREAKPOINT */
+/* TABLET VIEWPORT BREAKPOINT */
 @media (max-width: 1024px) {
   .linksSection { gap: 40px; }
 }
 
-/* 📱 MOBILE VIEWPORT BREAKPOINT */
+/* MOBILE VIEWPORT BREAKPOINT */
 @media (max-width: 768px) {
   .footerContainer {
     flex-direction: column;

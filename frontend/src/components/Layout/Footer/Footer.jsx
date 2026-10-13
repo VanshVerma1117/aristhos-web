@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"; 
 import styles from "./Footer.module.css";
-import Logo from "/LOGO.png";
 
 export default function Footer() {
   return (
@@ -8,14 +7,18 @@ export default function Footer() {
       <div className={styles.brandSection}>
         <Link to="/" className={styles.logoLink}>
           <div className={styles.logo}>
-            <img className={styles.logoImg} src={Logo} alt="LOGO" />
+            <img className={styles.logoImg} src="/LOGO.png" alt="Aristhos Woodcraft Logo" />
             <span className={styles.logoText}>ARISTHOS WOODCRAFT</span>
           </div>
         </Link>
+        
         <p className={styles.tagline}>
-  Prefer email over a call?{' '}
-  <Link to="/about" className={styles.taglineLink}>Use our custom project form</Link> — no phone number required.
-</p>
+          Prefer email over a call?{' '}
+          <Link to="/about" className={styles.taglineLink}>
+            Use our custom project form
+          </Link> 
+          {' '}— no phone number required.
+        </p>
       </div>
 
       <div className={styles.linksSection}>

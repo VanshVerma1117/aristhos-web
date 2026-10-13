@@ -4,25 +4,13 @@
   transition: all var(--transition);
 }
 
-/* --- State: Standard Opaque Navbar --- */
+/* Navbar States */
 .standardNav {
   position: sticky;
   top: 0;
   background-color: var(--text-grey);
 }
 
-.standardNav .logoText,
-.standardNav .navLink,
-.standardNav .navLink:link,
-.standardNav .navLink:visited {
-  color: #000000 !important;
-}
-
-.standardNav .navLink.active {
-  color: var(--primary-gold) !important;
-}
-
-/* --- State: Transparent Overlay Navbar --- */
 .transparentNav {
   position: absolute;
   top: 0;
@@ -32,6 +20,14 @@
   border: none;
 }
 
+/* State Overrides (forces priority over global tags) */
+.standardNav .logoText,
+.standardNav .navLink,
+.standardNav .navLink:link,
+.standardNav .navLink:visited {
+  color: #000000 !important;
+}
+
 .transparentNav .logoText,
 .transparentNav .navLink,
 .transparentNav .navLink:link,
@@ -39,11 +35,14 @@
   color: var(--text-white) !important;
 }
 
-.transparentNav .navLink.active {
+.standardNav .navLink.active,
+.transparentNav .navLink.active,
+.standardNav .navLink:hover,
+.transparentNav .navLink:hover {
   color: var(--primary-gold) !important;
 }
 
-/* --- Core Structure --- */
+/* Core Structure */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -90,11 +89,8 @@
   letter-spacing: 1px;
   transition: color var(--transition);
 }
-.standardNav .navLink:hover,
-.transparentNav .navLink:hover {
-  color: var(--primary-gold) !important;
-}
 
+/* Mobile Breakpoints */
 @media (max-width: 768px) {
   .navList {
     display: none;

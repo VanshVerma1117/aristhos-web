@@ -53,8 +53,6 @@ export default function Navbar() {
               </NavLink>
             </li>
           </ul>
-
-          {/* Replaced <button> with a semantic <Link> targeting your data capture form */}
           <Button to="/about" variant="black" text="Get a Quote" />
         </div>
       </nav>
