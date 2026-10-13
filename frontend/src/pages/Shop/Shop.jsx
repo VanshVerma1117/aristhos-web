@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react"; 
 import { useSearchParams } from "react-router-dom"; 
 import apiClient from "../../utils/axiosInstance"; 
-import Navbar from "../../components/Layout/Navbar/Navbar.jsx";
-import Footer from "../../components/Layout/Footer/Footer.jsx";
-import ShopSidebar from "./ShopSidebar/ShopSidebar.jsx";
-import ShopProductCard from "./ShopProductCard/ShopProductCard.jsx";
-import ProductModal from "./ProductModal/ProductModal.jsx";
+import Navbar from "../../components/Layout/Navbar/Navbar";
+import Footer from "../../components/Layout/Footer/Footer";
+import ShopSidebar from "./ShopSidebar/ShopSidebar";
+import ShopProductCard from "./ShopProductCard/ShopProductCard";
+import ProductModal from "./ProductModal/ProductModal";
 import styles from "./Shop.module.css";
 
 export default function Shop() {
-  // 1. New State for API Data
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,31 +17,25 @@ export default function Shop() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [searchParams] = useSearchParams();
 
-  // 2. Asynchronous Fetch Pipeline
   useEffect(() => {
     const fetchCatalog = async () => {
       try {
         setIsLoading(true);
         setError(null);
         
-        // Fetch from the backend route we secured earlier
         const response = await apiClient.get('/products');
-        
-        // Safely extract the array whether your backend paginates (data.data) or not
         const fetchedProducts = response.data?.data || response.data || [];
+        
         setProducts(fetchedProducts);
 
-        // 3. Handle Direct Product URL Routing
         const productIdParam = searchParams.get("productId");
         if (productIdParam) {
-          // REMOVED parseInt() - MongoDB IDs are strings
           const matchedProduct = fetchedProducts.find(
             (item) => item._id === productIdParam || item.id === productIdParam
           );
           
           if (matchedProduct) {
             setSelectedProduct(matchedProduct);
-            // Handle Mongoose data shapes (arrays vs strings)
             const cat = Array.isArray(matchedProduct.category) 
               ? matchedProduct.category[0] 
               : matchedProduct.category;
@@ -60,17 +53,14 @@ export default function Shop() {
     fetchCatalog();
   }, [searchParams]);
 
-  // Sync category state if URL parameter changes
   useEffect(() => {
     const categoryParam = searchParams.get("category");
     if (categoryParam) setActiveCategory(categoryParam);
   }, [searchParams]);
 
-  // 4. Client-side filtering
   const filteredProducts = products.filter((item) => {
     if (activeCategory === "All Collections") return true;
     
-    // Safely check if category is an array or string based on your Mongoose Schema
     if (Array.isArray(item.category)) {
       return item.category.includes(activeCategory);
     }
@@ -97,7 +87,6 @@ export default function Shop() {
           </div>
 
           <div className={styles.gridDisplay}>
-            {/* 5. Safe Rendering States */}
             {isLoading ? (
               <p className={styles.loadingState}>Loading showcase pieces...</p>
             ) : error ? (
@@ -105,7 +94,6 @@ export default function Shop() {
             ) : filteredProducts.length > 0 ? (
               filteredProducts.map((item) => (
                 <ShopProductCard 
-                  // Support MongoDB _id natively
                   key={item._id || item.id} 
                   item={item} 
                   onClick={() => setSelectedProduct(item)} 
