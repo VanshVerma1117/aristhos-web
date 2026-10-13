@@ -5,6 +5,7 @@ import styles from './InquiryList.module.css';
 const SOURCE_LABELS = {
   custom_order_form: 'Specific Product',
   about_page_custom_project: 'Custom Project',
+  custom_project: 'Custom Project (Email)',
   cta_custom_order: 'Custom Order (CTA)',
 };
 
@@ -13,28 +14,29 @@ export default function InquiryList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const fetchInquiries = async () => {
-    try {
-      setLoading(true);
-      const response = await apiClient.get('/inquiries');
-      setInquiries(response.data.data || []);
-      setError('');
-    } catch (err) {
-      setError('Failed to fetch inquiries from database.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchInquiries = async () => {
+      try {
+        setLoading(true);
+        const response = await apiClient.get('/inquiries');
+        setInquiries(response.data.data || []);
+        setError('');
+      } catch (err) {
+        setError('Failed to fetch inquiries from database.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchInquiries();
   }, []);
 
   const handleStatusChange = async (id, newStatus) => {
     try {
       await apiClient.put(`/inquiries/${id}`, { status: newStatus });
-      // Update local state instantly instead of requiring a full network refetch
-      setInquiries(inquiries.map(inq => inq._id === id ? { ...inq, status: newStatus } : inq));
+      setInquiries((prev) => 
+        prev.map((inq) => (inq._id === id ? { ...inq, status: newStatus } : inq))
+      );
     } catch (err) {
       alert('Failed to update status.');
     }
@@ -80,6 +82,7 @@ export default function InquiryList() {
                         onChange={(e) => handleStatusChange(inq._id, e.target.value)}
                         className={styles.statusSelect}
                       >
+                        <option value="new_custom_project">New Email Inquiry</option>
                         <option value="pending_whatsapp">Pending WhatsApp</option>
                         <option value="contacted">Contacted</option>
                         <option value="resolved">Resolved</option>
