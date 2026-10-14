@@ -34,7 +34,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: var(--card-bg); /* Leveraging card-bg for subtle line work */
+  background-color: var(--card-bg); 
 }
 
 .eraBlock {
