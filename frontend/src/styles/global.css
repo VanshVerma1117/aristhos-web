@@ -3,7 +3,11 @@
   --card-bg: #141414;
   --primary-gold: #c5a059;
   --text-white: #ffffff;
+  --text-light: #dddddd;
+  --text-light-grey: #aaaaaa;
   --text-grey: #a0a0a0;
+  --border-color: #222222;
+  --placeholder-bg: #1a1a1a;
   --transition: 0.3s ease;
 }
 
@@ -22,6 +26,7 @@ html, body {
   color: var(--text-white);
   line-height: 1.6;
 }
+
 main {
   width: 90%;
   max-width: 1200px;
@@ -29,7 +34,7 @@ main {
   padding: 60px 10px;
   display: flex;
   flex-direction: column;
-  gap: 80px; /* Uniform section separation spacing */
+  gap: 80px; 
 }
 
 /* Base Typographic Hierarchy */
@@ -44,6 +49,8 @@ p { font-size: 1.1rem; color: var(--text-grey); }
   margin: 0 auto;
   padding: 60px 10px;
 }
+
+/* Breakpoints */
 @media (max-width: 1024px) {
   h1 { font-size: 2.8rem; }
   h2 { font-size: 2rem; }
