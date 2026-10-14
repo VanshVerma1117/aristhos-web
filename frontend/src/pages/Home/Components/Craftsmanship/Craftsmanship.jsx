@@ -13,7 +13,7 @@ const CRAFT_DATA = [
     id: "artisans",
     title: "Master Artisans",
     description: "Hand-chiseled by hereditary master carvers using ancestral tools, preserving traditional intricate pattern work unique to the culture.",
-    image: "/shop-assets/maharaja-throne.png"
+    image: "/shop-assets/Maharaja-throne.png"
   },
   {
     id: "delivery",

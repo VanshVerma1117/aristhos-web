@@ -1,7 +1,7 @@
 .heroFullscreen {
   width: 100vw;
   height: 85vh;
-  background-image: url("/frontend/public/home_assets/home-hero.png");
+  background-image: url("/home_assets/home-hero.png");
   background-size: cover;
   background-position: center;
   position: relative;
