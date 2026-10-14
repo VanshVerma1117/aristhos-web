@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* 🚀 Full viewport bleed edge calculation safely isolated */
+  /* Full viewport bleed */
   margin: 80px calc(-50vw + 50%) 0 calc(-50vw + 50%); 
 }
 
@@ -20,7 +20,6 @@
   gap: 20px;
 }
 
-/* 📱 MOBILE VIEWPORT BREAKPOINT */
 @media (max-width: 768px) {
   .ctaContainer {
     flex-direction: column;

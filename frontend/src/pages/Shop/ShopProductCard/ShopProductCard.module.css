@@ -10,7 +10,7 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border: 1px solid #222222;
+  border: 1px solid var(--border-color, #222222);
   margin-bottom: 1.2rem;
 }
 
@@ -31,8 +31,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1a1a1a;
-  color: #666;
+  background-color: var(--placeholder-bg, #1a1a1a);
+  color: var(--text-grey, #666666);
 }
 
 .categoryBadge {
@@ -43,7 +43,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   background-color: rgba(10, 10, 10, 0.8);
-  color: #ffffff;
+  color: var(--text-white, #ffffff);
   padding: 4px 10px;
   border-radius: 2px;
 }
@@ -57,12 +57,12 @@
   font-size: 1.1rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: #ffffff;
+  color: var(--text-white, #ffffff);
 }
 
 .price {
   font-size: 0.95rem;
-  color: #888888;
+  color: var(--text-grey, #888888);
 }
 
 .mainClickTarget {

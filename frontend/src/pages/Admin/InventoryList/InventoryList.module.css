@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #404040; /* neutral-700 */
+  border-bottom: 1px solid #404040;
   padding-bottom: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -51,7 +51,7 @@
 .loadingText {
   text-align: center;
   padding: 2.5rem 0;
-  color: #737373; /* neutral-500 */
+  color: #737373;
 }
 
 .tableWrapper {
@@ -65,8 +65,8 @@
 }
 
 .tableHeadRow {
-  border-bottom: 1px solid #262626; /* neutral-800 */
-  color: #a3a3a3; /* neutral-400 */
+  border-bottom: 1px solid #262626; 
+  color: #a3a3a3; 
   font-size: 0.875rem;
 }
 
@@ -140,14 +140,14 @@
 
 .inStock {
   background-color: rgba(6, 78, 59, 0.5);
-  color: #34d399; /* emerald-400 */
-  border: 1px solid #065f46; /* emerald-800 */
+  color: #34d399; 
+  border: 1px solid #065f46; 
 }
 
 .outOfStock {
   background-color: rgba(127, 29, 29, 0.5);
-  color: #f87171; /* red-400 */
-  border: 1px solid #991b1b; /* red-800 */
+  color: #f87171; 
+  border: 1px solid #991b1b; 
 }
 
 .actions {
@@ -168,19 +168,19 @@
 }
 
 .editBtn {
-  color: #60a5fa; /* blue-400 */
+  color: #60a5fa; 
 }
 
 .editBtn:hover {
-  color: #93c5fd; /* blue-300 */
+  color: #93c5fd;
 }
 
 .deleteBtn {
-  color: #f87171; /* red-400 */
+  color: #f87171; 
 }
 
 .deleteBtn:hover {
-  color: #fca5a5; /* red-300 */
+  color: #fca5a5; 
 }
 
 .pagination {

@@ -1,7 +1,7 @@
 .sidebarContainer {
   width: 220px;
   flex-shrink: 0;
-  border-right: 1px solid #222222; 
+  border-right: 1px solid var(--border-color, #222222); 
   padding-right: 2.5rem;           
   box-sizing: border-box;
   position: sticky;
@@ -15,7 +15,7 @@
   font-weight: 600;
   letter-spacing: 2px;
   margin-bottom: 2rem;
-  color: #ffffff;
+  color: var(--text-white, #ffffff);
 }
 
 .linksList {
@@ -28,12 +28,10 @@
 
 .linkItem {
   font-size: 0.95rem;
-  color: #888888;
+  color: var(--text-grey, #888888);
   cursor: pointer;
   transition: color 0.2s ease;
   white-space: nowrap;
-
-  /* added extra later on */
   background: none;
   border: none;
   padding: 0;
@@ -47,7 +45,7 @@
   color: var(--primary-gold); 
 }
 
-/* 💻 LAPTOPS & TABLETS */
+/* Tablet Breakpoint */
 @media (max-width: 1024px) {
   .sidebarContainer {
     width: 180px;
@@ -55,13 +53,13 @@
   }
 }
 
-/* 📱 MOBILE */
+/* Mobile Breakpoint */
 @media (max-width: 768px) {
   .sidebarContainer {
     position: static !important;
     width: 100%;
     border-right: none;
-    border-bottom: 1px solid #222222;
+    border-bottom: 1px solid var(--border-color, #222222);
     padding-right: 0;
     padding-bottom: 1.5rem;
   }

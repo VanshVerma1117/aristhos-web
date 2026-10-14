@@ -7,15 +7,14 @@ export default function InventoryList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
-  
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  
+  const navigate = useNavigate();
 
   const fetchInventory = async (page) => {
     try {
       setLoading(true);
-      // Securely routes through apiClient 
       const response = await apiClient.get(`/products?page=${page}&limit=10`);
       
       setProducts(response.data.data || []);
@@ -35,12 +34,10 @@ export default function InventoryList() {
   }, [currentPage]);
 
   const handleDelete = async (productId) => {
-    // Production Guard
     const confirmDelete = window.confirm("Are you sure you want to permanently delete this product?");
     if (!confirmDelete) return;
 
     try {
-      // apiClient handles the base URL and JWT cookie injection
       await apiClient.delete(`/products/${productId}`);
       fetchInventory(currentPage);
     } catch (err) {
@@ -57,7 +54,6 @@ export default function InventoryList() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>Inventory Management</h2>
-        {/* Replaced <a> with <Link> to prevent full page reloads */}
         <Link to="/admin/create" className={styles.addBtn}>
           + Add New Product
         </Link>
@@ -91,8 +87,9 @@ export default function InventoryList() {
                 </tr>
               ) : (
                 products.map((product) => {
-                  // Safe data normalization
-                  const displayCategory = Array.isArray(product.category) ? product.category[0] : product.category;
+                  const displayCategory = Array.isArray(product.category) 
+                    ? product.category[0] 
+                    : product.category;
                   
                   return (
                     <tr key={product._id} className={styles.tableRow}>

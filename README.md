@@ -25,6 +25,7 @@ Public visitors browse a product catalog and submit inquiries via WhatsApp or a 
 - MongoDB + Mongoose
 - JWT authentication (httpOnly cookies) & bcrypt password hashing
 - **Security Hardening:** Express Rate Limit (brute-force protection), Helmet (HTTP header security), and custom stack-trace concealed error handling.
+- **Email Notifications:** Resend API (instant email alert for custom project inquiries)
 - **Media Storage:** Cloudinary CDN + Multer
 
 **Deployment**
@@ -45,7 +46,7 @@ Public visitors browse a product catalog and submit inquiries via WhatsApp or a 
 **Admin (protected)**
 - JWT-based login with secure httpOnly cookies.
 - Product CRUD (create, edit, delete image uploads) via a protected inventory dashboard.
-- Customer inquiry dashboard — view all inquiries, update status workflow (Pending WhatsApp / Contacted / Resolved).
+- Customer inquiry dashboard — view all inquiries, update status workflow (New Email Inquiry / Pending WhatsApp / Contacted / Resolved)
 - Route-level auth guard — unauthenticated visits to any `/admin/*` route redirect to login.
 
 ---
@@ -74,6 +75,7 @@ aristhos-web/
     ├── middleware/           # auth guard, error handler, rate limiter, upload
     ├── models/                # User, Product, Inquiry (Mongoose schemas)
     ├── routes/
+    ├── utils/                # sendInquiryEmail (Resend)
     ├── seeder.js            
     └── server.js
 ```
@@ -105,6 +107,13 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secure_jwt_signing_key
 NODE_ENV=development
 FRONTEND_URL=http://localhost:5173
+# Cloudinary Integration
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+# Resend email notifications
+RESEND_API_KEY=your_resend_api_key
+INQUIRY_INBOX=email_address_that_receives_inquiries
 ```
 
 ### Frontend `.env`
@@ -118,7 +127,7 @@ VITE_API_BASE_URL=http://localhost:5001/api
 ## API Overview
 
 | Method | Route | Access |
-|---|---|---|
+|--------|-------|--------|
 | POST | `/api/auth/login` | Public |
 | POST | `/api/auth/logout` | Public |
 | GET | `/api/auth/me` | Protected — session check |
@@ -126,6 +135,7 @@ VITE_API_BASE_URL=http://localhost:5001/api
 | POST / PUT / DELETE | `/api/products` | Protected (admin) |
 | POST | `/api/upload` | Protected (admin)-Cloudinary CDN |
 | POST | `/api/inquiries` | Public |
+| POST | `/api/inquiries/custom-project` | Public (rate-limited), saves the inquiry and emails the project inbox |
 | GET | `/api/inquiries` | Protected (admin) |
 | PUT | `/api/inquiries/:id` | Protected (admin) |
 

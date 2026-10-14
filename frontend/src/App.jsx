@@ -13,18 +13,13 @@ import About from './pages/About/About';
 export default function App() {
   return (
     <Routes>
-      {/* Public Routes */}
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop />} />
       <Route path="/heritage" element={<Heritage />} />
       <Route path="/about" element={<About />} />
       
-      {/* Standalone Admin Routes */}
       <Route path="/admin/login" element={<AdminLogin />} />
       
-      {/* Protected Admin Shell */}
-      {/* Note: AdminLayout MUST contain authentication logic (e.g., verifying a token/cookie) 
-          and redirect to /admin/login if the user is unauthenticated. */}
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="inventory" element={<InventoryList />} />
         <Route path="create" element={<CreateProduct />} />
@@ -32,7 +27,6 @@ export default function App() {
         <Route path="inquiries" element={<InquiryList />} />
       </Route>
 
-      {/* Catch-all 404 Route */}
       <Route path="*" element={<div>404 - Page Not Found</div>} />
     </Routes>
   );

@@ -11,12 +11,12 @@
 
 .loginCard {
   width: 100%;
-  max-width: 28rem; /* Equivalent to max-w-md */
+  max-width: 28rem;
   padding: 2rem;
   background-color: #111111;
   border-radius: 0.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  border: 1px solid #262626; /* neutral-800 */
+  border: 1px solid #262626;
 }
 
 .headerText {
@@ -33,16 +33,16 @@
 
 .subtitle {
   font-size: 0.875rem;
-  color: #737373; /* neutral-500 */
+  color: #737373;
   margin-top: 0.5rem;
 }
 
 .errorBanner {
-  background-color: rgba(69, 10, 10, 1); /* red-950 */
-  color: #fca5a5; /* red-300 */
+  background-color: rgba(69, 10, 10, 1);
+  color: #fca5a5;
   padding: 0.75rem;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(153, 27, 27, 1); /* red-800 */
+  border: 1px solid rgba(153, 27, 27, 1);
   border-radius: 0.25rem;
   font-size: 0.875rem;
   text-align: center;
@@ -63,14 +63,14 @@
   display: block;
   margin-bottom: 0.25rem;
   font-size: 0.875rem;
-  color: #a3a3a3; /* neutral-400 */
+  color: #a3a3a3;
 }
 
 .inputField {
   width: 100%;
   padding: 0.75rem;
-  background-color: #171717; /* neutral-900 */
-  border: 1px solid #404040; /* neutral-700 */
+  background-color: #171717;
+  border: 1px solid #404040; 
   color: #ffffff;
   border-radius: 0.25rem;
   transition: border-color 0.2s ease, background-color 0.2s ease;

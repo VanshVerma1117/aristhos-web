@@ -35,12 +35,12 @@
   color: var(--text-grey);
 }
 
-/* 💻 TABLET VIEWPORT BREAKPOINT */
+/* TABLET VIEWPORT BREAKPOINT */
 @media (max-width: 1024px) {
   .image { height: 320px; }
 }
 
-/* 📱 MOBILE VIEWPORT BREAKPOINT */
+/* MOBILE VIEWPORT BREAKPOINT */
 @media (max-width: 768px) {
   .image { height: 380px; }
 }

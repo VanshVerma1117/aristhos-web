@@ -1,7 +1,7 @@
 .section {
-  background-color: var(--bg-black,#0a0a0a);
+  background-color: var(--bg-black, #0a0a0a);
   padding: 5rem 2rem;
-  color: #ffffff;
+  color: var(--text-white, #ffffff);
 }
 
 .container {
@@ -16,19 +16,19 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
-  color: #ffffff;
+  color: var(--text-white, #ffffff);
 }
 
 .subtitle {
   text-align: center;
-  color: #888888;
+  color: var(--text-grey, #888888);
   font-size: 0.95rem;
   margin-bottom: 3.5rem;
 }
 
 .loading {
   text-align: center;
-  color: #666666;
+  color: var(--text-grey, #666666);
   font-size: 1rem;
 }
 
@@ -39,8 +39,8 @@
 }
 
 .card {
-  background-color: #111111;
-  border: 1px solid #222222;
+  background-color: var(--card-bg, #111111);
+  border: 1px solid var(--border-color, #222222);
   border-radius: 4px;
   overflow: hidden;
   display: flex;
@@ -49,7 +49,7 @@
 
 .imageContainer {
   width: 100%;
-  aspect-ratio: 4 / 3; /* Distinct elegant ratio for landing page cards */
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background-color: #1a1a1a;
 }
@@ -86,7 +86,7 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: #666666;
+  color: var(--text-grey, #666666);
   margin-bottom: 0.5rem;
 }
 
@@ -107,7 +107,7 @@
   margin-top: auto;
   padding: 0.75rem;
   background-color: transparent;
-  border: 1px solid #c5a059;
+  border: 1px solid var(--primary-gold, #c5a059);
   color: var(--primary-gold, #c5a059);
   font-weight: 600;
   font-size: 0.9rem;
@@ -122,11 +122,11 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 3rem 1.25rem; /* Compresses wasted vertical whitespace on mobile */
+    padding: 3rem 1.25rem;
   }
 
   .title {
-    font-size: 1.5rem; /* Prevents text wrapping breaks */
+    font-size: 1.5rem;
   }
 
   .subtitle {
@@ -135,12 +135,11 @@
   }
 
   .grid {
-    /* Lowers the floor from 320px to 280px to prevent horizontal overflow on legacy 320px viewports */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
   }
   
   .imageContainer {
-    aspect-ratio: 1 / 1; /* Swaps to a square ratio to maximize image size on narrow vertical screens */
+    aspect-ratio: 1 / 1;
   }
 }

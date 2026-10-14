@@ -5,6 +5,10 @@ import styles from "./HomeHero.module.css";
 export default function HomeHero() {
   const navigate = useNavigate();
 
+  const handleExplore = () => {
+    navigate("/shop");
+  };
+
   return (
     <section className={styles.heroFullscreen}>
       <div className={styles.tintOverlay}>
@@ -16,8 +20,11 @@ export default function HomeHero() {
             to your doorstep.
           </p>
           
-          {/* Global button classes stay as plain strings */}
-          <Button variant="gold" text="EXPLORE COLLECTION" onClick={() => navigate("/shop")} />
+          <Button 
+            variant="gold" 
+            text="EXPLORE COLLECTION" 
+            onClick={handleExplore} 
+          />
         </div>
       </div>
     </section>

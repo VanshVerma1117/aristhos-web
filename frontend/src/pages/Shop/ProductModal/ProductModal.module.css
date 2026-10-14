@@ -14,8 +14,8 @@
 }
 
 .content {
-  background-color: #141414;
-  border: 1px solid #222222;
+  background-color: var(--card-bg, #141414);
+  border: 1px solid var(--border-color, #222222);
   width: 90%;
   max-width: 900px;
   padding: 2.5rem;
@@ -32,7 +32,7 @@
   right: 1.5rem;
   background: none;
   border: none;
-  color: #666666;
+  color: var(--text-grey, #666666);
   font-size: 1.4rem;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -40,7 +40,7 @@
 }
 
 .closeBtn:hover {
-  color: #ffffff;
+  color: var(--text-white, #ffffff);
 }
 
 .bodyLayout {
@@ -54,7 +54,7 @@
   width: 100%;
   height: 400px;
   object-fit: cover;
-  border: 1px solid #222222;
+  border: 1px solid var(--border-color, #222222);
 }
 
 .detailsPanel {
@@ -66,14 +66,14 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #666666;
+  color: var(--text-grey, #666666);
   margin-bottom: 0.5rem;
 }
 
 .title {
   font-size: 1.8rem;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--text-white, #ffffff);
   margin: 0 0 0.5rem 0;
 }
 
@@ -86,13 +86,13 @@
 
 .divider {
   border: 0;
-  border-top: 1px solid #222222;
+  border-top: 1px solid var(--border-color, #222222);
   margin: 1.5rem 0;
 }
 
 .desc {
   font-size: 0.95rem;
-  color: #aaaaaa;
+  color: var(--text-light-grey, #aaaaaa);
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
@@ -100,11 +100,11 @@
 .metaRow {
   font-size: 0.9rem;
   margin-bottom: 0.8rem;
-  color: #dddddd;
+  color: var(--text-light, #dddddd);
 }
 
 .metaRow strong {
-  color: #888888;
+  color: var(--text-grey, #888888);
   font-weight: 500;
   margin-right: 0.5rem;
 }
@@ -113,7 +113,7 @@
   display: block;
   text-align: center;
   background-color: var(--primary-gold);
-  color: #111111;
+  color: var(--bg-black, #111111);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
@@ -123,7 +123,7 @@
 }
 
 .actionBtn:hover {
-  background-color: #ffffff;
+  background-color: var(--text-white, #ffffff);
   transform: translateY(-2px);
 }
 

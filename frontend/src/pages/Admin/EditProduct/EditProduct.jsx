@@ -3,26 +3,25 @@ import { useParams, useNavigate } from 'react-router-dom';
 import apiClient from '../../../utils/axiosInstance';
 import styles from './EditProduct.module.css';
 
+const INITIAL_FORM_STATE = {
+  name: '',
+  price: '',
+  description: '',
+  category: 'Living Room',
+  inStock: true,
+  imageUrl: ''
+};
+
 export default function EditProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  const [formData, setFormData] = useState({
-    name: '',
-    price: '',
-    description: '',
-    category: 'Living Room',
-    inStock: true,
-    imageUrl: ''
-  });
-  
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [imageFile, setImageFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
-  
   const [status, setStatus] = useState('loading'); 
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Production Guard: Prevent memory leaks from dangling blob URLs
   useEffect(() => {
     return () => {
       if (previewUrl && previewUrl.startsWith('blob:')) {
@@ -31,15 +30,15 @@ export default function EditProduct() {
     };
   }, [previewUrl]);
 
-  // 1. Hydrate form with existing MongoDB data
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await apiClient.get(`/products/${id}`);
         const product = response.data.data || response.data;
         
-        // Safe data normalization for Mongoose schemas
-        const normalizedCategory = Array.isArray(product.category) ? product.category[0] : (product.category || 'Living Room');
+        const normalizedCategory = Array.isArray(product.category) 
+          ? product.category[0] 
+          : (product.category || 'Living Room');
         
         setFormData({
           name: product.name || '',
@@ -75,7 +74,6 @@ export default function EditProduct() {
 
     setImageFile(file);
     
-    // Revoke old local URL if it exists to free memory
     if (previewUrl && previewUrl.startsWith('blob:')) {
       URL.revokeObjectURL(previewUrl);
     }
@@ -83,14 +81,12 @@ export default function EditProduct() {
     setErrorMessage('');
   };
 
-  // 2. Conditional Two-Phase Transaction
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
     let finalImageUrl = formData.imageUrl; 
 
     try {
-      // Phase 1: Only hit Cloudinary if the admin physically attached a new file
       if (imageFile) {
         setStatus('uploading');
         const uploadData = new FormData();
@@ -102,7 +98,6 @@ export default function EditProduct() {
         finalImageUrl = uploadResponse.data.imageUrl;
       }
 
-      // Phase 2: Execute PUT request to mutate the MongoDB document
       setStatus('saving');
       const productPayload = {
         ...formData,
@@ -111,8 +106,6 @@ export default function EditProduct() {
       };
 
       await apiClient.put(`/products/${id}`, productPayload);
-
-      // Route back to inventory table on success
       navigate('/admin/inventory');
 
     } catch (error) {
@@ -120,6 +113,12 @@ export default function EditProduct() {
       setErrorMessage(`Error: ${message}`);
       setStatus('error');
     }
+  };
+
+  const getButtonText = () => {
+    if (status === 'uploading') return 'Uploading New Image...';
+    if (status === 'saving') return 'Updating Database...';
+    return 'Save Changes';
   };
 
   if (status === 'loading') {
@@ -191,9 +190,7 @@ export default function EditProduct() {
           disabled={status === 'uploading' || status === 'saving'}
           className={styles.submitBtn}
         >
-          {status === 'idle' || status === 'error' ? 'Save Changes' : 
-           status === 'uploading' ? 'Uploading New Image...' : 
-           'Updating Database...'}
+          {getButtonText()}
         </button>
       </form>
     </div>

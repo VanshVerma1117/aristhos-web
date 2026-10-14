@@ -4,13 +4,15 @@ import Navbar from '../../components/Layout/Navbar/Navbar';
 import Footer from '../../components/Layout/Footer/Footer';
 import styles from './About.module.css';
 
+const INITIAL_FORM_STATE = { name: '', email: '', message: '' };
+
 export default function About() {
-  // Restored State and Form Logic
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submitStatus, setSubmitStatus] = useState('idle'); // idle | loading | success | error
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  const [submitStatus, setSubmitStatus] = useState('idle');
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -18,17 +20,16 @@ export default function About() {
     setSubmitStatus('loading');
     
     try {
-      await apiClient.post('/inquiries', {
-        source: 'about_page_custom_project',
-        status: 'new_custom_project',
-        customerName: formData.name,
-        customerEmail: formData.email,
-        message: formData.message
+      await apiClient.post('/inquiries/custom-project', {
+      customerName: formData.name,
+      customerEmail: formData.email,
+      message: formData.message,
       });
+      
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' }); // Clear form
+      setFormData(INITIAL_FORM_STATE);
     } catch (error) {
-      console.error('Form submission failed:', error);
+      console.error('Inquiry submission failed:', error);
       setSubmitStatus('error');
     }
   };
@@ -103,7 +104,9 @@ export default function About() {
                   </div>
                   
                   {submitStatus === 'error' && (
-                    <div className={styles.errorMessage}>Submission failed. Please try again later.</div>
+                    <div className={styles.errorMessage}>
+                      Submission failed. Please try again later.
+                    </div>
                   )}
 
                   <button 

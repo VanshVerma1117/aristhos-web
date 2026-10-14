@@ -14,14 +14,14 @@
   width: 100%;
 }
 
-/* 💻 TABLET VIEWPORT BREAKPOINT */
+/* Tablet Breakpoint */
 @media (max-width: 1024px) {
   .cardGrid {
     gap: 20px;
   }
 }
 
-/* 📱 MOBILE VIEWPORT BREAKPOINT */
+/* Mobile Breakpoint */
 @media (max-width: 768px) {
   .cardGrid {
     flex-direction: column;
